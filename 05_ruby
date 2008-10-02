@@ -1,1 +1,2 @@
 alias irb='irb --readline -r irb/completion'
+export RI='-f ansi --width 70'
