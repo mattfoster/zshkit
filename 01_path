@@ -1,5 +1,24 @@
-# I want /opt/local/bin to take precedence
-path=(/opt/local/bin $path)
+# Add some dirs to the path.
+pathdirs=(/usr/local/git/bin 
+        /usr/local/libexec/git-core  
+        /var/lib/gems/1.8/bin
+        /opt/local/bin 
+        ~/bin )
 
-# Allow MacPorts man pages
-manpath=($manpath /opt/local/man)
+for dir ($pathdirs)
+  if [[ -x $dir ]]; then 
+    path=($dir $path) 
+  fi
+
+# This should remove possible dups
+typeset -U path
+
+# Allow MacPorts man pages and others
+dirs=( /usr/local/git/man /sw/share/man /opt/local/man )
+for dir ($dirs) 
+  if [[ -x $dir ]]; then 
+    manpath=($manpath $dir) 
+  fi
+
+typeset -U manpath
+
