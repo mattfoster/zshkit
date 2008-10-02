@@ -2,3 +2,7 @@ if [[ -x `which ggrep` ]]; then
 	alias rgrep=`which grep`
 	alias grep='ggrep --color'
 fi
+# I don't know how BSD's grep responds to this.
+export GREP_OPTIONS='--color=auto'
+
+
