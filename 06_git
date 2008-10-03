@@ -44,3 +44,21 @@ if [[ -x `which git` ]]; then
 		nohup gitk --all &
 	}
 fi
+
+alias gb='git branch -a -v'
+alias gs='git status'
+alias gd='git diff'
+alias gf='git fetch'
+alias gr='git-rebase'
+alias gsc='git-svn dcommit'
+alias gsr='git-svn rebase'
+alias gsf='git-svn fetch'
+# gc      => git checkout master
+# gc bugs => git checkout bugs
+function gc {
+  if [ -z "$1" ]; then
+    git checkout master
+  else
+    git checkout $1
+  fi
+}
