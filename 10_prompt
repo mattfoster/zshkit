@@ -1,2 +1,14 @@
 setopt prompt_subst
-PROMPT='%{$reset_color%}%B%n%b@%m %~`git-prompt`%(!.#.>) '
+# PROMPT='%{$reset_color%}%B%n%b@%m %~`git-prompt`%(!.#.>) '
+
+if [ "$SSH_CONNECTION" != "" ];
+then
+        # Not running locally...
+        local COLOUR='red'
+else
+        #Running locally...
+        local COLOUR='green'
+fi
+
+# Set up my prompt.
+autoload promptinit && promptinit && prompt doom green $COLOUR
