@@ -1,0 +1,6 @@
+# See From Bash to Z Shell,  Page: 101 
+# unalias run-help
+autoload -Uz run-help
+# From zsh-helpfiles (see fink)
+export HELPDIR='/sw/share/zsh/zsh_help'
+alias help=run-help
