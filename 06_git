@@ -21,7 +21,7 @@ if [[ -x `which git` ]]; then
 		if [[ x$branch != x ]]; then
 			dirty_color=$fg[cyan]
 			if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
-			[ x$branch != x ] && echo " %{$dirty_color%}$branch%{$reset_color%} "
+			[ x$branch != x ] && echo "%{$dirty_color%}$branch%{$reset_color%} "
 		fi
 	}
 	function git-scoreboard () {
