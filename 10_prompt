@@ -1,48 +1,7 @@
 setopt prompt_subst
 # PROMPT='%{$reset_color%}%B%n%b@%m %~`git-prompt`%(!.#.>) '
 
-# Themable prompt of doom.
-function prompt_doom_setup {
-	unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
-	# Colours accepted as arguments
-	local u_col=${1:-'green'}
-	local h_col=${2:-'green'}
-	local d_col=${3:-'blue'}
-	local n_tru=${4:-'blue'}
-	local n_fal=${5:-'yellow'}
-	# looks like: ee1mpf@eepc-tsar16 ~ $
-	ps1=(
-		"%{$fg_bold[$u_col]%}%n@"
-		"%{$fg_bold[$h_col]%}%m "
-		"%{$fg_bold[$d_col]%}%1~ "
-		"%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%}$"
-		" %{$reset_color%}"
-		)
-	ps2=(
-		"%_ %{$fg_bold[$d_col]%}-> "
-		"%{$reset_color%}"
-		)
-	PS2="${(j::)ps2}"
-	PS1="${(j::)ps1}"
-}
-
-# print information when user runs 'prompt -h doom'
-prompt_doom_help () {
-  cat <<EOH
-	  This prompt is color-scheme-able.  You can invoke it thus:
-
-	  prompt doom [colour1 [colour2 [colour3 [colour4 [colour5]]]]] 
-
-	  Colours correspond to username, hostname, working dir, and \$ sign
-	  for true 'exit' status and false 'exit' status.  Defaults are 
-		  green green blue blue yellow - all bold. For best visual
-		  effect, switch off bold chars in your terminal.  
-EOH
-}
-
-prompt_doom_setup "$@"
-
-
+# Set prompt colours depending on whether this is a local or remote connection
 if [ "$SSH_CONNECTION" != "" ]; then
   # Not running locally...
   local COLOUR='red'
@@ -52,4 +11,4 @@ else
 fi
 
 # Set up my prompt.
-autoload promptinit && promptinit && prompt doom green $COLOUR
+autoload promptinit && promptinit && prompt git green $COLOUR
