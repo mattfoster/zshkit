@@ -4,6 +4,10 @@ if [[ $mydir = . ]]; then
 	mydir=`pwd`
 fi
 dest=$HOME
+
+mkdir -p $HOME/.zsh/
+ln -s $mydir/func $HOME/.zsh/func
+
 echo My Directory: $mydir
 cp $HOME/.zshenv $HOME/.zshenv.pre_zshkit
 cp $HOME/.zshrc $HOME/.zshrc.pre_zshkit
