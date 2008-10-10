@@ -1,36 +1,30 @@
+# From: http://dotfiles.org/~_why/.zshrc
+# Really works with minimal prompt setup.
 
-# Set xterm/screen titles. These should run as hooks
-case $TERM in 
-  (*xterm*|ansi)
-    function title {
-      print -Pn "\e]1;$*\a"
-      print -Pn "\e]2;$*\a"
-    }
-  ;;
-  (screen)
-    # normal escape codes don't work here.
-    function title { }
-  ;;
-esac
+# format titles for screen and rxvt
+function title() {
+  # escape '%' chars in $1, make nonprintables visible
+  a=${(V)1//\%/\%\%}
 
-TITLE_FMT="%n@%m: %~"
-title $TITLE_FMT
+  # Truncate command, and join lines.
+  a=$(print -Pn "%40>...>$a" | tr -d "\n")
 
-# Available hook functions (see zshmisc(1))
-#  * chpwd: exec when working dir changes
-#  * precmd: execute before each prompt
-#  * preexec: execute after a command has been read and is about to be run
-
-function chpwd {
-  title $TITLE_FMT
+  case $TERM in
+  screen)
+    print -Pn "\ek$a:$3\e\\"      # screen title (in ^A")
+    ;;
+  xterm*|rxvt|ansi)
+    print -Pn "\e]2;$2 | $a:$3\a" # plain xterm title
+    ;;
+  esac
 }
 
-function precmd {
-  title $TITLE_FMT
+# precmd is called just before the prompt is printed
+function precmd() {
+  title "zsh" "$USER@%m" "%55<...<%~"
 }
 
-function preexec {
-  emulate -L zsh
-    local -a cmd; cmd=(${(z)1})
-    title $cmd[1]:t "$cmd[2,-1]"
+# preexec is called just before any command line is executed
+function preexec() {
+  title "$1" "$USER@%m" "%35<...<%~"
 }
