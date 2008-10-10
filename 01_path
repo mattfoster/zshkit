@@ -1,5 +1,6 @@
 # Add some dirs to the path.
-pathdirs=(/usr/local/git/bin 
+pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
+        /usr/local/git/bin 
         /usr/local/libexec/git-core  
         /var/lib/gems/1.8/bin
         /opt/local/bin 
