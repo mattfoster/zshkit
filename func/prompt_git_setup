@@ -20,8 +20,8 @@ function prompt_git_setup {
 	local n_fal=${5:-'yellow'}
 	# looks like: ee1mpf@eepc-tsar16 ~ $
 	ps1=(
-		"%{$fg_bold[$u_col]%}%n@"
-		"%{$fg_bold[$h_col]%}%m "
+    # "%{$fg_bold[$u_col]%}%n@"
+    # "%{$fg_bold[$h_col]%}%m "
 		"%{$fg_bold[$d_col]%}%1~"
 		"%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%} "
 		'`git-prompt`'
