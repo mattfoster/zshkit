@@ -29,3 +29,22 @@ function precmd() {
 function preexec() {
   title "$1" "$USER@%m" "%35<...<%~"
 }
+
+# Loads up .env.rc or .env files if there in the current tree.
+# http://stackoverflow.com/questions/171563/whats-in-your-zshrc#211917
+function chpwd; {
+    DIRECTORY="$PWD"
+    while true; do
+        if [ -f './.env.rc' ]; then
+            source './.env.rc'
+            break
+        fi
+        if [ -f './env' ]; then
+            source './env'
+            break
+        fi
+        [ $PWD = '/' ] && break
+        cd -q ..
+    done
+    cd -q "$DIRECTORY"
+}
