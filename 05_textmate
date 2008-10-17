@@ -1,0 +1,12 @@
+# Useful functions for bundle development
+if [[ -x `which mate` ]]; then
+  function mate_reload(){
+    osascript -e 'tell app "TextMate" to reload bundles'
+  }
+  function mate_bundle () {
+    cd "$HOME/Library/Application Support/TextMate/Bundles/$1.tmbundle"
+  }
+  function mate_pristine () {
+    cd "$HOME/Library/Application Support/TextMate/Pristine Copy/Bundles/$1.tmbundle"
+  }
+fi
