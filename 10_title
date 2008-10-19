@@ -32,6 +32,7 @@ function preexec() {
 
 # Loads up .env.rc or .env files if there in the current tree.
 # http://stackoverflow.com/questions/171563/whats-in-your-zshrc#211917
+# WTF is cd -q?
 # function chpwd; {
 #     DIRECTORY="$PWD"
 #     while true; do
@@ -39,10 +40,10 @@ function preexec() {
 #             source './.env.rc'
 #             break
 #         fi
-#         if [ -f './env' ]; then
-#             source './env'
-#             break
-#         fi
+#         # if [ -f './env' ]; then
+#         #     source './env'
+#         #     break
+#         # fi
 #         [ $PWD = '/' ] && break
 #         cd -q ..
 #     done
