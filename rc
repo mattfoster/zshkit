@@ -69,3 +69,6 @@ compinit
 
 autoload -Uz colors
 colors
+
+# Needed for doc function in 03_help.
+compdef _doc doc
