@@ -32,20 +32,24 @@ function preexec() {
 
 # Loads up .env.rc or .env files if there in the current tree.
 # http://stackoverflow.com/questions/171563/whats-in-your-zshrc#211917
-# WTF is cd -q?
-# function chpwd; {
-#     DIRECTORY="$PWD"
-#     while true; do
-#         if [ -f './.env.rc' ]; then
-#             source './.env.rc'
-#             break
-#         fi
-#         # if [ -f './env' ]; then
-#         #     source './env'
-#         #     break
-#         # fi
-#         [ $PWD = '/' ] && break
-#         cd -q ..
-#     done
-#     cd -q "$DIRECTORY"
-# }
+# cd -q is only available on new zsh versions. 
+# i.e. it's in finks (4.5.6), but not Apple's (4.3.4)
+if [[ $ZSH_VERSION > 4.3.4 ]]; then 
+  function chpwd; {
+  DIRECTORY="$PWD"
+  while true; do
+    if [ -f './.env.rc' ]; then
+      source './.env.rc'
+      break
+    fi
+    # Removed as it clashes with zshkit'szshenv.
+    # if [ -f './env' ]; then
+    #     source './env'
+    #     break
+    # fi
+    [ $PWD = '/' ] && break
+    cd -q ..
+  done
+  cd -q "$DIRECTORY"
+  }
+fi
