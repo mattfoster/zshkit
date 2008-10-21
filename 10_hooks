@@ -47,7 +47,7 @@ if [[ $ZSH_VERSION > 4.3.4 ]]; then
     #     source './env'
     #     break
     # fi
-    [ $PWD = '/' ] && break
+    [ "$PWD" = '/' ] && break
     cd -q ..
   done
   cd -q "$DIRECTORY"
