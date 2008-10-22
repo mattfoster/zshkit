@@ -1,0 +1,9 @@
+# Idea from http://www.sakana.fr/blog/2007/03/18/scripting-twitter-with-curl/
+function tweet() {
+    if [[ -z $TWITTER_USER || -z $TWITTER_PASSWD ]]; then
+        echo "Plese set TWITTER_USER and TWITTER_PASSWD"
+    else
+        curl --basic --user $TWITTER_USER:$TWITTER_PASSWD --data status="$*" \
+          http://twitter.com/statuses/update.xml 2>&1 > /dev/null
+    fi
+}
