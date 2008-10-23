@@ -1,4 +1,4 @@
 setopt prompt_subst
 
 # Set up my prompt.
-autoload promptinit && promptinit && prompt git green $COLOUR
+autoload promptinit && promptinit && prompt git
