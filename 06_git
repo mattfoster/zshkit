@@ -17,10 +17,15 @@ if [[ -x `which git` ]]; then
 	  emulate -L zsh
 		gstatus=$(git status 2> /dev/null)
 		branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
+		if [[ $branch == '# Not currently on any branch.' ]]; then
+		  no_branch=1
+		  branch='none'
+	  fi
 		dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -n 2 | grep 'nothing to commit (working directory clean)'; echo $?)
 		if [[ x$branch != x ]]; then
 			dirty_color=$fg[cyan]
 			if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
+      if [[ $no_branch = 1 ]] { dirty_color=$fg[red] }
 			[ x$branch != x ] && echo "%{$dirty_color%}$branch%{$reset_color%} "
 		fi
 	}
