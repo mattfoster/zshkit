@@ -1,5 +1,7 @@
 # See From Bash to Z Shell,  Page: 101 
-unalias run-help
+if [[ $(whence -v run-help) == 'run-help is a shell function' ]]; then
+        unalias run-help
+fi
 export HELPDIR='/sw/share/zsh/zsh_help'
 autoload -Uz run-help
 # From zsh-helpfiles (see fink)
