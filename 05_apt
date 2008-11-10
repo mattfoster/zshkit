@@ -1,7 +1,6 @@
 # Look for apt, and add some useful functions if we have it.
 if [[ -x `which apt-get` ]]; then
   alias apt-get='noglob sudo apt-get'
-  alias apt-cache='noglob sudo apt-cache'
   alias aptitude='noglob sudo aptitude'
 
   upgrade () {
