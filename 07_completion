@@ -1,2 +1,4 @@
 # Files to ignore during completion
 fignore=(DS_Store $fignore)
+# Set up completion for bundle function in 05_editor.
+compdef _bundle bundle 
