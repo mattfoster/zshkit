@@ -72,3 +72,5 @@ colors
 
 # Needed for doc function in 03_help.
 compdef _doc doc
+# Set up completion for bundle function in 05_editor.
+compdef _bundle bundle
