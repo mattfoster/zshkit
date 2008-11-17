@@ -14,6 +14,10 @@ if [[ -x `which mate` && $(not_run_from_ssh) = 1 ]]; then
     function bundle () {
       cd "$HOME/Library/Application Support/TextMate/Bundles/$1.tmbundle"
     }
+    _bundle() {
+      bundle_path="$HOME/Library/Application Support/TextMate/Bundles"
+      compadd $(print -l $bundle_path/*.tmbundle(:t:r))
+    }
 elif [[ -x `which gvim` ]]; then
     EDITOR=gvim
 elif [[ -x `which vim` ]]; then
