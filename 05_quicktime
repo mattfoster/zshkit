@@ -1,5 +1,5 @@
 # See: http://omino.com/sw/qt_tools/
-if [[ -x `which ggrep` ]]; then
+if [[ -x `which qt_export` ]]; then
   create_image_mov() {
     if [[ $# = 0 ]]
     then
