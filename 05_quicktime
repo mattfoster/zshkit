@@ -1,3 +1,4 @@
+# See: http://omino.com/sw/qt_tools/
 if [[ -x `which ggrep` ]]; then
   create_image_mov() {
     if [[ $# = 0 ]]
