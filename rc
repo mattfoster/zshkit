@@ -3,7 +3,7 @@ setopt AUTOPUSHD PUSHDMINUS PUSHDSILENT PUSHDTOHOME
 setopt AUTOCD			          # cd by typing dirname
 setopt cdablevars	          # Follow variables which are dirnames
 setopt interactivecomments	# allow comments on cmd line.
-setopt SH_WORD_SPLIT		    # split up var in "for x in *"
+# setopt SH_WORD_SPLIT        # split up var in "for x in *"
 setopt MULTIOS			        # Allow multiple redirection echo 'a'>b>c
 setopt CORRECT CORRECT_ALL	# Try to correct command line spelling
 setopt BANG_HIST		        # Allow ! for accessing history 
