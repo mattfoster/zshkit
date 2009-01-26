@@ -62,7 +62,7 @@ zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 
 # Expand out ! when I press space. 
-bindkey ' ' magic-space
+# bindkey ' ' magic-space
 
 autoload -Uz compinit
 compinit
