@@ -7,12 +7,9 @@ pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
         ~/bin )
 
 for dir ($pathdirs)
-  if [[ -x $dir ]]; then 
+  if [[ -d $dir ]]; then 
     path=($dir $path) 
   fi
-
-# This should remove possible dups
-typeset -U path
 
 # Allow MacPorts man pages and others
 dirs=( /usr/local/git/man /sw/share/man /opt/local/man )
@@ -21,13 +18,11 @@ for dir ($dirs)
     manpath=($manpath $dir) 
   fi
 
-typeset -U manpath
-
 # Add function paths
 funcdirs=( $HOME/.zsh/func /sw/share/zsh/ )
 for dir ($funcdirs) 
   if [[ -x $dir ]]; then 
     fpath=($fpath $dir) 
   fi
-  
-typeset -U fpath
+
+typeset -gU path cdpath manpath fpath
