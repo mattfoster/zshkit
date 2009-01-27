@@ -1,1 +1,4 @@
+export PYTHONPATH=$HOME/.python_libraries
+typeset -U PYTHONPATH
+
 alias pylab='ipython -pylab -wthread'
