@@ -56,8 +56,6 @@ globalias() {
 }
 
 zle -N globalias
-bindkey "  " globalias
-bindkey " " magic-space
 
 # List abbreviations and key binding, picks out help in green.
 H-Abbrevs() {
@@ -76,8 +74,6 @@ sudo-command-line() {
     [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
 }
 zle -N sudo-command-line
-# Put the current command line into a sudo call
-bindkey "^Os" sudo-command-line
 
 # run command line with noglob set:
 noglob-command-line() {
@@ -85,4 +81,3 @@ noglob-command-line() {
     [[ $BUFFER != noglob\ * ]] && BUFFER="noglob $BUFFER"
 }
 zle -N noglob-command-line
-bindkey "^Og" noglob-command-line
