@@ -20,15 +20,6 @@ function title() {
   esac
 }
 
-function git_dirty() {
-  # check if repository is dirty
-  if (! ((git diff --cached --quiet) && (git diff --quiet))); then 
-    return 1
-  else 
-    return 0
-  fi
-}
-
 # precmd is called just before the prompt is printed
 function precmd() {
   # This may not be the best way of doing this.
