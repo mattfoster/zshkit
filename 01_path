@@ -19,7 +19,7 @@ for dir ($dirs)
   fi
 
 # Add function paths
-funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info )
+funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info /sw/share/zsh/VCS_Info/Backends)
 for dir ($funcdirs) 
   if [[ -x $dir ]]; then 
     fpath=($fpath $dir) 

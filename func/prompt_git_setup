@@ -12,6 +12,14 @@
 # Prompt setup function
 function prompt_git_setup {
   unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
+  
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' formats '%b '
+  zstyle ':vcs_info:*' actionformats '(%r) %b '
+  zstyle ':vcs_info:*' enable git cvs svn hg bzr
+  # vcs_info also needs to be in precmd, see: 10_hooks
+  vcs_info
+  
   # Colours accepted as arguments
   local u_col=${1:-'green'}
   local h_col=${2:-'green'}
@@ -23,8 +31,8 @@ function prompt_git_setup {
     # "%{$fg_bold[$u_col]%}%n@"
     # "%{$fg_bold[$h_col]%}%m "
     "%{$fg_bold[$d_col]%}%1~"
-    "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%} "
-    '`git-prompt`'
+    "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%} %{$reset_color%}"
+    "%1v%{$reset_color%}" # requires vcs_info
     "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%}$ "
     "%{$reset_color%}"
   )
