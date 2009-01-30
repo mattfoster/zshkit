@@ -14,8 +14,8 @@ function prompt_git_setup {
   unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
   
   autoload -Uz vcs_info
-  zstyle ':vcs_info:*' formats '%b '
-  zstyle ':vcs_info:*' actionformats '(%r) %b '
+  zstyle ':vcs_info:*' formats '%{'${fg[yellow]}'%}%b '
+  zstyle ':vcs_info:(svn|bzr):*' branchformat '%b%{'${fg[yellow]}'%}:%r'
   zstyle ':vcs_info:*' enable git cvs svn hg bzr
   # vcs_info also needs to be in precmd, see: 10_hooks
   vcs_info
@@ -30,9 +30,9 @@ function prompt_git_setup {
     ps1=(
     # "%{$fg_bold[$u_col]%}%n@"
     # "%{$fg_bold[$h_col]%}%m "
-    "%{$fg_bold[$d_col]%}%1~"
+    "%{$fg_bold[$d_col]%}%1~%{$reset_color%}" # end of path
     "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%} %{$reset_color%}"
-    "%1v%{$reset_color%}" # requires vcs_info
+    '${vcs_info_msg_0_}'
     "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%}$ "
     "%{$reset_color%}"
   )

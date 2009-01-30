@@ -20,7 +20,7 @@ function title() {
   esac
 }
 
-function dirty() {
+function git_dirty() {
   # check if repository is dirty
   if (! ((git diff --cached --quiet) && (git diff --quiet))); then 
     return 1
@@ -31,9 +31,10 @@ function dirty() {
 
 # precmd is called just before the prompt is printed
 function precmd() {
-  psvar=()
+  # psvar=()
   vcs_info
-  [[ -n $vcs_info_msg_0_ ]] && psvar[1]="${vcs_info_msg_0_}"
+  # This loads the info messgage into %1v.
+  # [[ -n $vcs_info_msg_0_ ]] && psvar[1]="${vcs_info_msg_0_}"
   title "zsh" "$USER@%m" "%55<...<%~"
 }
 
