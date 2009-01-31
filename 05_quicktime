@@ -18,3 +18,19 @@ if [[ -x `which qt_export` ]]; then
     fi
   }
 fi
+
+if [[ -x `which mencoder` ]]; then
+  function mkv_to_avi(){
+      # Remux .mkv or .ogm to .avi with mp3 audio.
+      input=''
+      output=${input:r}.avi
+      mencoder $input -oac mp3lame -ovc copy -o $output
+  }
+
+  function mkv_to_avi(){
+      # Convert .mkv or .ogm to .avi with XViD and mp3 audio.
+      input=''
+      output=${input:r}.avi
+      mencoder $input -oac mp3lame -ovc xvid -xvidencopts pass=1 -o $output
+  }
+fi
