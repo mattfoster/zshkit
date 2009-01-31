@@ -26,7 +26,7 @@ function precmd() {
 	if [[ $git_enable == 1 ]]; then
     vcs_info
   else
-    vcs_info_msg_0_=''
+    vcs_info_msg_0_=''
 	fi
   # This loads the info messgage into %1v.
   title "zsh" "$USER@%m" "%55<...<%~"

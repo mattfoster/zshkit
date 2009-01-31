@@ -11,37 +11,21 @@
 
 # Prompt setup function
 function prompt_git_setup {
+  
   unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
   
-  autoload -Uz vcs_info
-  zstyle ':vcs_info:*' formats '%{'${fg[yellow]}'%}%b '
-  zstyle ':vcs_info:(svn|bzr):*' branchformat '%b%{'${fg[yellow]}'%}:%r'
-  zstyle ':vcs_info:*' enable git cvs svn hg bzr
-  # vcs_info also needs to be in precmd, see: 10_hooks
-  vcs_info
-  
   # Colours accepted as arguments
-  local u_col=${1:-'green'}
-  local h_col=${2:-'green'}
-  local d_col=${3:-'blue'}
-  local n_tru=${4:-'blue'}
-  local n_fal=${5:-'yellow'}
-  # looks like: ee1mpf@eepc-tsar16 ~ $
-    ps1=(
-    # "%{$fg_bold[$u_col]%}%n@"
-    # "%{$fg_bold[$h_col]%}%m "
-    "%{$fg_bold[$d_col]%}%1~%{$reset_color%}" # end of path
-    "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%} %{$reset_color%}"
-    '${vcs_info_msg_0_}'
-    "%{%(?.$fg_bold[$n_tru].$fg_bold[$n_fal])%}$ "
-    "%{$reset_color%}"
-  )
-  ps2=(
-    "%_ %{$fg_bold[$d_col]%}-> "
-    "%{$reset_color%}"
-  )
-  PS2="${(j::)ps2}"
-  PS1="${(j::)ps1}"
+  d_col=${3:-'blue'}
+  n_tru=${4:-'blue'}
+  n_fal=${5:-'red'}
+  # I've no idea why the %F style colours don't work whhen SHLVL == 1
+  if [[ $SHLVL == 1 ]]; then
+    PS1='$fg_bold[$d_col]%1~ $fg_bold[yellow]${vcs_info_msg_0_}%(?.$fg_bold[$n_tru].$fg[$n_fal])$ $reset_color'
+    PS2='%_ $fg_bold{$d_col}-> %reset_color'  
+  else  
+    PS1='%B%F{$d_col}%1~ %F{yellow}${vcs_info_msg_0_}%(?.%F{$n_tru}.%F{$n_fal})$ %F{white}'
+    PS2='%_ %B%F{$d_col}-> %F{white}'
+  fi
 }
 
 # print information when user runs 'prompt -h git'

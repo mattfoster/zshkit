@@ -1,5 +1,6 @@
 # Add some dirs to the path.
 pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
+        /usr/local/bin
         /usr/local/git/bin 
         /usr/local/libexec/git-core  
         /var/lib/gems/1.8/bin
@@ -19,7 +20,13 @@ for dir ($dirs)
   fi
 
 # Add function paths
-funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info /sw/share/zsh/VCS_Info/Backends)
+# funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info /sw/share/zsh/VCS_Info/Backends)
+# I'm using a manually installed zsh 4.3.9
+
+binary=$(which zsh)
+install_path=$binary:h:h # Strip bin/zsh to find installation path.
+
+funcdirs=( $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions)
 for dir ($funcdirs) 
   if [[ -x $dir ]]; then 
     fpath=($fpath $dir) 
