@@ -77,8 +77,6 @@ zstyle ':vcs_info:*' enable git cvs svn hg bzr
 # vcs_info also needs to be in precmd, see: 10_hooks
 vcs_info
 
-
-
 # Needed for doc function in 03_help.
 compdef _doc doc
 # Set up completion for bundle function in 05_editor.

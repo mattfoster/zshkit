@@ -1,4 +1,4 @@
-# Themable prompt with git support. 
+# Themable prompt with vcs_info support. 
 # 	No twiddly crap - just prompty goodness.
 #   Requires zshkit: http://github.com/mattfoster/zshkit/tree/master/06_git
 # 
@@ -7,10 +7,10 @@
 # 2) Make sure that it's in the fpath:
 #	fpath=( $HOME/.zsh/func "$fpath[@]" )
 # 3) Load up the prompt theme extension, and set the prompt:
-#	autoload promptinit && promptinit && prompt git
+#	autoload promptinit && promptinit && prompt minimal_vcs
 
 # Prompt setup function
-function prompt_git_setup {
+function prompt_minimal_vcs_setup {
   
   unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
   
@@ -30,7 +30,7 @@ function prompt_git_setup {
 }
 
 # print information when user runs 'prompt -h git'
-prompt_git_help () {
+prompt_minimal_vcs_help () {
 cat <<EOH
   Minimal VCS prompt: displays VCS status right in your prompt.
   
@@ -38,9 +38,11 @@ cat <<EOH
   
   Default look: 
   * $fg_bold[blue]zshkit $fg_bold[yellow]master $fg_bold[blue]%$reset_color
-    in a directory called zshkit, with the master branch checked out, as a normal user
+    in a directory called zshkit, with the master branch checked out, as a
+    normal user
   * $fg_bold[blue]zshkit $fg_bold[yellow]master $fg_bold[red]%$reset_color 
-    in a directory called zshkit, with the master branch checked out, as a normal user, where the last command faied
+    in a directory called zshkit, with the master branch checked out, as a
+    normal user, where the last command faied
   * $fg_bold[blue]~ $fg_bold[blue]#$reset_color 
     in home directory as a super user.
   
@@ -57,10 +59,8 @@ cat <<EOH
    'colour3' for true 'exit' status and 'colour4' for false.  
    
    Defaults are $fg_bold[blue]blue $fg_bold[yellow]yellow $fg_bold[blue]blue $fg_bold[red]red$reset_color - all bold. For best visual effect, 
-   switch off bold chars in your terminal.
-   
-   
+   switch off bold chars in your terminal.  
 EOH
 }
 
-prompt_git_setup "$@"
+prompt_minimal_vcs_setup "$@"
