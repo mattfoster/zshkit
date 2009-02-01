@@ -15,9 +15,9 @@ function prompt_git_setup {
   unset PS1 PS2 PS3 PS4 PROMPT RPROMPT
   
   # Colours accepted as arguments
-  d_col=${3:-'blue'}
-  n_tru=${4:-'blue'}
-  n_fal=${5:-'red'}
+  d_col=${1:-'blue'}
+  n_tru=${2:-'blue'}
+  n_fal=${3:-'red'}
   # I've no idea why the %F style colours don't work whhen SHLVL == 1
   if [[ $SHLVL == 1 ]]; then
     PS1='%{$fg_bold[$d_col]%}%1~ %{$fg_bold[yellow]%}${vcs_info_msg_0_}%(?.%{$fg_bold[$n_tru]%}.%{$fg[$n_fal]%})$ %{$reset_color%}'
