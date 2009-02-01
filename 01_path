@@ -12,6 +12,8 @@ for dir ($pathdirs)
     path=($dir $path) 
   fi
 
+cdpath=(~ ~/Projects)
+
 # Allow MacPorts man pages and others
 dirs=( /usr/local/git/man /sw/share/man /opt/local/man )
 for dir ($dirs) 
