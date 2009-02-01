@@ -20,8 +20,8 @@ function prompt_git_setup {
   n_fal=${5:-'red'}
   # I've no idea why the %F style colours don't work whhen SHLVL == 1
   if [[ $SHLVL == 1 ]]; then
-    PS1='$fg_bold[$d_col]%1~ $fg_bold[yellow]${vcs_info_msg_0_}%(?.$fg_bold[$n_tru].$fg[$n_fal])$ $reset_color'
-    PS2='%_ $fg_bold{$d_col}-> %reset_color'  
+    PS1='%{$fg_bold[$d_col]%}%1~ %{$fg_bold[yellow]%}${vcs_info_msg_0_}%(?.%{$fg_bold[$n_tru]%}.%{$fg[$n_fal]%})$ %{$reset_color%}'
+    PS2='%_ %{$fg_bold{$d_col}%}-> %{%reset_color%}'  
   else  
     PS1='%B%F{$d_col}%1~ %F{yellow}${vcs_info_msg_0_}%(?.%F{$n_tru}.%F{$n_fal})$ %F{white}'
     PS2='%_ %B%F{$d_col}-> %F{white}'
