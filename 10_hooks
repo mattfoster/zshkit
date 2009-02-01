@@ -23,11 +23,15 @@ function title() {
 # precmd is called just before the prompt is printed
 function precmd() {
   # This may not be the best way of doing this.
-	if [[ $git_enable == 1 ]]; then
+  if [[ $ZSH_VERSION < 4.3.6 ]]
+  then
+    vcs_info_msg_0_=$(git-prompt)
+  elif [[ $git_enable == 1 ]]
+  then
     vcs_info
   else
     vcs_info_msg_0_=''
-	fi
+  fi
   # This loads the info messgage into %1v.
   title "zsh" "$USER@%m" "%55<...<%~"
 }

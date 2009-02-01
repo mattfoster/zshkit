@@ -3,9 +3,18 @@ if [[ -x `which git` ]]; then
 	function git-branch-name () {
 		git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
 	}
+  # Return 1 if repository is dirty. 0 if it isn't a repostory, or is clean.
 	function git-dirty () {
-		git status 2> /dev/null | grep "nothing to commit (working directory clean)"
-		echo $?
+	  local code
+		gs=$(git status 2> /dev/null)
+		if [[ $? == 128 ]];
+		then
+		  code=0
+	  else
+		 echo $gs | grep "nothing to commit (working directory clean)" | 2>&1 > /dev/null
+		 code=$?
+	 fi
+		echo $code
 	}
 	function gsrb () {
 		branch=$(git-branch-name) 
@@ -23,27 +32,27 @@ if [[ -x `which git` ]]; then
 		fi
 	}
 	
-  # function git-prompt() {
-  #   emulate -L zsh
-  #   dirty_color=$fg[cyan]
-  #   branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
-  #   if [[ $branch == '# Not currently on any branch.' ]]; then
-  #     no_branch=1
-  #     branch='none'
-  #         fi
-  #   if [[ $git_enable = 1 ]]; then
-  #     gstatus=$(git status 2> /dev/null)
-  #     branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
-  #     dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -n 2 | grep 'nothing to commit (working directory clean)'; echo $?)
-  #     if [[ x$branch != x ]]; then
-  #       if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
-  #                 if [[ $no_branch = 1 ]] { dirty_color=$fg[red] }
-  #       [ x$branch != x ] && echo "%{$dirty_color%}$branch%{$reset_color%} "
-  #     fi
-  #   else
-  #     echo "%{$dirty_color%}!%{$reset_color%}"
-  #   fi
-  # }
+  function git-prompt() {
+    emulate -L zsh
+    dirty_color=$fg[cyan]
+    branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
+    if [[ $branch == '# Not currently on any branch.' ]]; then
+      no_branch=1
+      branch='none'
+          fi
+    if [[ $git_enable = 1 ]]; then
+      gstatus=$(git status 2> /dev/null)
+      branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
+      dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -n 2 | grep 'nothing to commit (working directory clean)'; echo $?)
+      if [[ x$branch != x ]]; then
+        if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
+                  if [[ $no_branch = 1 ]] { dirty_color=$fg[red] }
+        [ x$branch != x ] && echo "%{$dirty_color%}$branch%{$reset_color%} "
+      fi
+    else
+      echo "%{$dirty_color%}!%{$reset_color%}"
+    fi
+  }
 	
 	function git-scoreboard () {
 		git log | grep Author | sort | uniq -ci | sort -r
@@ -71,7 +80,6 @@ if [[ -x `which git` ]]; then
 	function nhgk () {
 		nohup gitk --all &
 	}
-
 
   alias g='git'
   alias gb='git branch -a -v'

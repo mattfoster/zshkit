@@ -15,7 +15,7 @@ for dir ($pathdirs)
 cdpath=(~ ~/Projects)
 
 # Allow MacPorts man pages and others
-dirs=( /usr/local/git/man /sw/share/man /opt/local/man )
+dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man)
 for dir ($dirs) 
   if [[ -x $dir ]]; then 
     manpath=($manpath $dir) 
