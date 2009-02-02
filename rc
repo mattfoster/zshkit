@@ -16,6 +16,8 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' users resolve
 # use dircolours in completion listings
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Enable menu completion
+zstyle ':completion*:default' menu 'select=1'
 
 # allow approximate matching
 zstyle ':completion:*' completer _complete _match _approximate
@@ -60,9 +62,6 @@ zstyle ':completion:*' auto-description 'specify: %d'
 
 # Give long completion options in a list. tab to advance.
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-
-# Expand out ! when I press space. 
-# bindkey ' ' magic-space
 
 autoload -Uz compinit
 compinit
