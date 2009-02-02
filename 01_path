@@ -12,10 +12,10 @@ for dir ($pathdirs)
     path=($dir $path) 
   fi
 
-cdpath=(~ ~/Projects)
+cdpath=(~ ~/Projects ~/Work)
 
 # Allow MacPorts man pages and others
-dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man)
+dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man ~/Docs/man)
 for dir ($dirs) 
   if [[ -x $dir ]]; then 
     manpath=($manpath $dir) 
