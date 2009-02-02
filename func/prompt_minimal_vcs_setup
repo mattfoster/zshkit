@@ -20,7 +20,7 @@ function prompt_minimal_vcs_setup {
   n_tru=${3:-'blue'}
   n_fal=${4:-'red'}
   # I've no idea why the %F style colours don't work whhen SHLVL == 1
-  if [[ $SHLVL == 1 || $ZSH_VERSION < 4.3.6 ]]; then
+  if [[ $SHLVL == 1 || $ZSH_VERSION < 4.3.7 ]]; then
     PS1='%{$fg_bold[$d_col]%}%1~ %{$fg_bold[$b_col]%}${vcs_info_msg_0_}%(?.%{$fg_bold[$n_tru]%}.%{$fg[$n_fal]%})%# %{$reset_color%}'
     PS2='%_ %{$fg_bold[$d_col]%}-> %{$reset_color%}'  
   else  
