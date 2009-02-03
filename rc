@@ -81,3 +81,9 @@ fi
 compdef _doc doc
 # Set up completion for bundle function in 05_editor.
 compdef _bundle bundle
+
+_cheat() {
+    compadd print -l ${(s. .)$(cheat sheets | tr -d ' ' | tr '\n' ' ' | sed -e 's/AllCheatSheets://')}
+}
+
+compdef _cheat cheat
