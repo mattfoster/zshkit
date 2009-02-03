@@ -35,3 +35,10 @@ for dir ($funcdirs)
   fi
 
 typeset -gU path cdpath manpath fpath
+
+# A few named directories cd by doing cd ~D etc.
+D=~/Documents
+DL=~/Downloads
+P=~/Projects
+W=~/work
+Z=~/Projects/zshkit
