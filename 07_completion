@@ -1,2 +1,9 @@
 # Files to ignore during completion
 fignore=(DS_Store $fignore)
+
+_cheat() {
+    compadd print -l ${(s. .)$(cheat sheets | tr -d ' ' | tr '\n' ' ' | sed -e 's/AllCheatSheets://')}
+}
+
+compdef _cheat cheat
+
