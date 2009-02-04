@@ -48,6 +48,11 @@ abbrevs=('...' '../..'
          'se' 'setopt interactivecomments'
  )
 
+# Create global aliases from the abbreviations.
+for key in ${(k)abbrevs}; do 
+ alias -g $key="${abbrevs[$key]}"
+done
+
 globalias() {
    local MATCH
    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
