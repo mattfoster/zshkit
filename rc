@@ -73,6 +73,7 @@ if [[ $ZSH_VERSION > 4.3.6 ]]; then
   autoload -Uz vcs_info
   zstyle ':vcs_info:*' formats '%b '
   zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:%r'
+  zstyle ':vcs_info:bzr:*' use-simple true 
   zstyle ':vcs_info:*' enable git cvs svn hg bzr
   # vcs_info also needs to be in precmd, see: 10_hooks
   vcs_info
