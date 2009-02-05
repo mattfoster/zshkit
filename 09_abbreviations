@@ -49,8 +49,8 @@ abbrevs=('...' '../..'
  )
 
 # Create global aliases from the abbreviations.
-for key in ${(k)abbrevs}; do 
- alias -g $key="${abbrevs[$key]}"
+for abbr in ${(k)abbrevs}; do 
+ alias -g $abbr="${abbrevs[$abbr]}"
 done
 
 globalias() {
@@ -62,12 +62,12 @@ globalias() {
 
 zle -N globalias
 
-# List abbreviations and key binding, picks out help in green.
+# List abbreviations and abbr binding, picks out help in green.
 H-Abbrevs() {
   echo "Displaying shell abbreviations"
-  echo "Keybinding is:" ${$(bindkey | grep globalias)[1]}
-  for key in ${(ok)abbrevs}; do 
-    printf "%-20s: %s" $key ${abbrevs[$key]:s/
+  echo "Keybinding is:" ${$(bindabbr | grep globalias)[1]}
+  for abbr in ${(ok)abbrevs}; do 
+    printf "%-20s: %s" $abbr ${abbrevs[$abbr]:s/
 /$fg[green] /} # Replaces newlines with spaces
     print -l $reset_color
   done
