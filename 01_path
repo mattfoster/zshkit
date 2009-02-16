@@ -1,6 +1,7 @@
 # Add some dirs to the path.
 pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
         /usr/local/ActivePerl-5.10/bin
+        /usr/local/ActivePerl-5.10/site/bin
         /usr/local/bin
         /usr/local/git/bin 
         /usr/local/libexec/git-core  
