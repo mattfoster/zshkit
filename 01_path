@@ -17,7 +17,13 @@ for dir ($pathdirs)
 cdpath=(~ ~/Projects ~/Work)
 
 # Allow MacPorts man pages and others
-dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man ~/Docs/man /usr/local/ActivePerl-5.10/man /usr/local/ActivePerl-5.10/site/man)
+dirs=( /usr/local/git/man 
+       /sw/share/man 
+       /opt/local/man /usr/local/man 
+       ~/Docs/man 
+       /usr/local/ActivePerl-5.10/man 
+       /usr/local/ActivePerl-5.10/site/man)
+       
 for dir ($dirs) 
   if [[ -x $dir ]]; then 
     manpath=($manpath $dir) 
