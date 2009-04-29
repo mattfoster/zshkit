@@ -18,7 +18,6 @@ abbrevs=('...' '../..'
          'T' '| tail'    
          'da' 'du -sch'
          'j' 'jobs -l'
-         'co' "./configure && make && sudo make install"
          'CH' "./configure --help"
          'dir' 'ls -lSrah'
          'lad' $'ls -d .*(/)\n# only show dot-directories'
