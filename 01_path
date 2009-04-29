@@ -17,7 +17,7 @@ for dir ($pathdirs)
 cdpath=(~ ~/Projects ~/Work)
 
 # Allow MacPorts man pages and others
-dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man ~/Docs/man)
+dirs=( /usr/local/git/man /sw/share/man /opt/local/man /usr/local/man ~/Docs/man /usr/local/ActivePerl-5.10/man /usr/local/ActivePerl-5.10/site/man)
 for dir ($dirs) 
   if [[ -x $dir ]]; then 
     manpath=($manpath $dir) 
@@ -30,7 +30,12 @@ for dir ($dirs)
 binary=$(which zsh)
 install_path=$binary:h:h # Strip bin/zsh to find installation path.
 
-funcdirs=( $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions)
+funcdirs=( $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions 
+                $install_path/share/zsh/4.3.6/functions 
+                $install_path/share/zsh/4.2.6/functions
+                /usr/share/zsh/4.2.6/functions
+                /usr/share/zsh/4.3.6/functions
+)
 for dir ($funcdirs) 
   if [[ -x $dir ]]; then 
     fpath=($fpath $dir) 
