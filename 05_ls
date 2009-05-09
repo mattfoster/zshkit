@@ -3,7 +3,7 @@ if [[ -x `which gls` ]]; then
 	alias ls='gls -h --color=auto '
 elif [[ $(uname) == 'FreeBSD' ]]; then
     export CLICOLOR="yes"
-    export LSCOLORS='exfxcxdxbxegedabagacad'    
+    export LSCOLORS='ExfxcxdxbxEgEdabagacad'    
 elif [[ -n `ls --color` && $? == 0 ]]; then 
   # Check if ls can handle the --color option. If it can it's probably gnu.
   alias ls='ls --color=auto'
