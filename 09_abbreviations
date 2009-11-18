@@ -45,6 +45,7 @@ abbrevs=('...' '../..'
          'cx' 'chmod +x'
          'e'  'print -l'
          'se' 'setopt interactivecomments'
+         'cvss' 'cvs -q -n update'
  )
 
 # Create global aliases from the abbreviations.

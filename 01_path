@@ -20,7 +20,7 @@ cdpath=(~ ~/Projects ~/Work)
 dirs=( /usr/local/git/man 
        /sw/share/man 
        /opt/local/man /usr/local/man 
-       ~/Docs/man 
+       $HOME/Library/Documentation/Local/man 
        /usr/local/ActivePerl-5.10/man 
        /usr/local/ActivePerl-5.10/site/man)
        
