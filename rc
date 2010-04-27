@@ -77,13 +77,32 @@ zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 autoload -Uz compinit
 compinit
 
+bash_source() {
+  alias shopt=':'
+  alias _expand=_bash_expand
+  alias _complete=_bash_comp
+  emulate -L sh
+  setopt kshglob noshglob braceexpand
+
+  source "$@"
+}
+
+have() {
+  unset have
+  (( ${+commands[$1]} )) && have=yes
+}
+
+autoload -Uz bashcompinit
+bashcompinit
+bash_source /etc/bash_completion.d/ack-grep
+
 autoload -Uz colors
 colors
 
 if [[ $ZSH_VERSION > 4.3.6 ]]; then
   autoload -Uz vcs_info
   zstyle ':vcs_info:*' formats '%b '
-  zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:%r'
+  zstyle ':vcs_info:(svn|bzr|csv):*' branchformat '%b:%r'
   zstyle ':vcs_info:cvs:*' branchformat '%r '
   zstyle ':vcs_info:bzr:*' use-simple true 
   zstyle ':vcs_info:*' enable git cvs svn hg bzr
