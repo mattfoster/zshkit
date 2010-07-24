@@ -99,7 +99,9 @@ bash_source /etc/bash_completion.d/ack-grep
 autoload -Uz colors
 colors
 
-if [[ $ZSH_VERSION > 4.3.6 ]]; then
+autoload -Uz is-at-least
+
+if is-at-least 4.3.6; then
   autoload -Uz vcs_info
   zstyle ':vcs_info:*' formats '%b '
   zstyle ':vcs_info:(svn|bzr|cvs):*' branchformat '%b:%r'
