@@ -1,3 +1,10 @@
+# Print ruby's version number (for adding gems to the path)
+function get_ruby_version {
+    if [[ -x $(which ruby) ]]; then
+        print $(ruby -e 'puts RUBY_VERSION')
+    fi
+}
+
 # Add some dirs to the path.
 pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
         /usr/local/ActivePerl-5.10/bin
@@ -5,7 +12,7 @@ pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
         /usr/local/bin
         /usr/local/git/bin 
         /usr/local/libexec/git-core  
-        /var/lib/gems/1.8/bin
+        /var/lib/gems/$(get_ruby_version)/bin
         /opt/local/bin 
         ~/bin )
 
