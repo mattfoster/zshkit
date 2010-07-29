@@ -1,8 +1,6 @@
 # Convenient.  Also works in Gentoo or Ubuntu
-if [[ -x $(which irb1.9.1) ]]; then
+if [[ -x $(which irb$(get_ruby_version)) ]]; then
   alias irb='irb1.9.1 --readline -r irb/completion'
-elif [[ -x $(which irb1.8) ]]; then
-  alias irb='irb1.8 --readline -r irb/completion'
 else
   alias irb='irb --readline -r irb/completion'
 fi
