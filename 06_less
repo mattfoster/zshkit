@@ -1,8 +1,8 @@
 # Setup some pretty colours for less. 
 # Unless we're using a terminal where everything just blinks.
-if [[ $TERM_PROGRAM != 'iTerm.app' &&
-      $TERM_PROGRAM != 'Apple_Terminal'
-   ]]; then
+autoload is-mac-terminal
+
+if ! is-mac-terminal; then
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
         export LESS_TERMCAP_me=$'\E[0m'           # end mode
