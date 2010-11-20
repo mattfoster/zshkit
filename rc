@@ -92,9 +92,13 @@ have() {
   (( ${+commands[$1]} )) && have=yes
 }
 
+# Autoload some bash completion functions if they exist.
 autoload -Uz bashcompinit
 bashcompinit
-bash_source /etc/bash_completion.d/ack-grep
+
+if [[ -e /etc/bash_completion.d/ack-grep ]];then
+  bash_source /etc/bash_completion.d/ack-grep
+fi
 
 autoload -Uz colors
 colors
