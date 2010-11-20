@@ -1,6 +1,6 @@
 # Setup some pretty colours for less. 
 # Unless we're using a terminal where everything just blinks.
-autoload is-mac-terminal
+autoload -U is-mac-terminal
 
 if ! is-mac-terminal; then
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
