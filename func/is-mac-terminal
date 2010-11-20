@@ -1,0 +1,11 @@
+# Small library of ZSH functions for detecting terminal programs.
+# autoload is-mac-terminal
+
+mac_terminal_progs=(iTerm.app Apple_Terminal)
+for prog ($mac_terminal_progs) {
+    if [[ "$TERM_PROGRAM" == "$prog" ]]; then 
+        return 0
+    fi
+}
+
+return 1
