@@ -6,5 +6,3 @@ fi
 # From zsh-lovers: detect gnu grep:
 (grep --help 2>/dev/null |grep -- --color) >/dev/null && \
 export GREP_OPTIONS='--color=auto'
-
-
