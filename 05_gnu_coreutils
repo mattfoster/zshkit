@@ -1,0 +1,6 @@
+# Include GNU coreutils aliases if installed via homebrew
+
+ALIASES=$(brew --prefix coreutils)/aliases
+if [ -e $ALIASES ]; then
+    source $ALIASES
+fi
