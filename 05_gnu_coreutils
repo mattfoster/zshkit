@@ -3,6 +3,6 @@
 ALIASES=$(brew --prefix coreutils)/aliases
 if [ -e $ALIASES ]; then
     source $ALIASES
-    # Whilst experimenting I had probes with my prompt and g[
+    # Whilst experimenting I had problems with my prompt and g[
     unalias [
 fi
