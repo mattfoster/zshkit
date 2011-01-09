@@ -9,6 +9,8 @@
 # 3) Load up the prompt theme extension, and set the prompt:
 #	autoload promptinit && promptinit && prompt minimal_vcs
 
+autoload -U is-at-least
+
 # Prompt setup function
 function prompt_minimal_vcs_setup {
   
@@ -19,8 +21,8 @@ function prompt_minimal_vcs_setup {
   b_col=${2-'yellow'}
   n_tru=${3:-'blue'}
   n_fal=${4:-'red'}
-  # I've no idea why the %F style colours don't work whhen SHLVL == 1
-  if [[ $SHLVL == 1 || $ZSH_VERSION < 4.3.7 ]]; then
+  # I've no idea why the %F style colours don't work when SHLVL == 1
+  if is-at-least 4.3.7 || [[ $SHLVL == 1 ]]; then
     PS1='%{$fg_bold[$d_col]%}%1~ %{$fg_bold[$b_col]%}${vcs_info_msg_0_}%(?.%{$fg_bold[$n_tru]%}.%{$fg[$n_fal]%})%# %{$reset_color%}'
     PS2='%_ %{$fg_bold[$d_col]%}→ %{$reset_color%}'  
   else  
