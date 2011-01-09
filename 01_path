@@ -48,11 +48,9 @@ local binary=$(which zsh)
 local install_path=$binary:h:h # Strip bin/zsh to find installation path.
 
 funcdirs=(
-    $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions
-    $install_path/share/zsh/4.3.6/functions
-    $install_path/share/zsh/4.2.6/functions
-    /usr/share/zsh/4.2.6/functions
-    /usr/share/zsh/4.3.6/functions
+    $HOME/.zsh/func 
+    $install_path/share/zsh/$ZSH_VERSION/functions
+    /usr/share/zsh/$ZSH_VERSION/functions
 )
 
 # Add exxisting function directories to the fpath
