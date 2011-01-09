@@ -44,8 +44,8 @@ for dir ($dirs)
   fi
 
 # Add function paths
-binary=$(which zsh)
-install_path=$binary:h:h # Strip bin/zsh to find installation path.
+local binary=$(which zsh)
+local install_path=$binary:h:h # Strip bin/zsh to find installation path.
 
 funcdirs=(
     $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions
