@@ -1,12 +1,23 @@
 export EDITOR
 export CVSEDITOR
 
-function not_run_from_ssh () {
-	ps x|grep "${PPID}.*sshd"|grep -v grep
-	echo $?
+# Define an order or preference for text editors
+local editors
+editors=(mate mvim gvim vim vi nano pico)
+
+# Look for the first of these editors which exists
+for editor ($editors) {
+    if [[ -x $(which $editor) ]]; then
+        EDITOR=$editor
+        break
+    fi
 }
 
-if [[ -n `bundle` && $? = 0 && -x `which mate` && $(not_run_from_ssh) = 1 ]]; then
+# Print a warning if there's still no editor set.
+[[ -z $EDITOR ]] && print 'No editor set.'
+
+# TextMate specific stuff:
+if [[ $EDITOR == 'mate' && -x $(which bundle) && -n $(bundle) && $? = 0 && -z $SSH_CLIENT ]]; then
 	EDITOR="mate -w"
 	# Useful functions for bundle development
     function reload_textmate(){
@@ -19,19 +30,6 @@ if [[ -n `bundle` && $? = 0 && -x `which mate` && $(not_run_from_ssh) = 1 ]]; th
       bundle_path="$HOME/Library/Application Support/TextMate/Bundles"
       compadd $(print -l $bundle_path/*.tmbundle(:t:r))
     }
-elif [[ -x `which gvim` ]]; then
-    EDITOR=gvim
-    CVSEDITOR='gvim -f'
-elif [[ -x `which vim` ]]; then
-    EDITOR=vim
-elif [[ -x `which vi` ]]; then
-    EDITOR=vi  
-elif [[ -x `which nano` ]]; then
-	EDITOR=nano
-elif [[ -x `which pico` ]]; then
-	EDITOR=pico
-else
-	EDITOR=vi
 fi
 
 # Set EDITOR as default for plaintext stuff
