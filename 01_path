@@ -19,7 +19,9 @@ pathdirs=(
 # XXX: This might cause problems if you alias 'gem' to something else after the path has been setup.
 if [[ -x $(which gem) ]]; then
         # 's.:.' creates an array by splitting on ':'.
-        pathdirs+=(${(s.:.)"$(gem environment gempath)"})
+        gemdirs=(${(s.:.)"$(gem environment gempath)"})
+        # The paths above don't end with /bin.
+        for dir ($gemdirs) { pathdirs=($pathdirs "$dir/bin") }
 fi
 
 # Add directories which exist to the path
