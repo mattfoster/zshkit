@@ -1,0 +1,10 @@
+# Determine ruby version and export it some useful variables.
+# autoload get-ruby-version
+
+if [[ -x $(which ruby) ]]; then
+    RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION') # e.g. 1.8.7
+    RUBY_MAJOR_VERSION=$(ruby -e 'puts RUBY_VERSION.gsub(/[.]\d+$/, "")') # e.g. 1.8
+    return 0;
+fi
+
+return 1;

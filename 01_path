@@ -1,64 +1,62 @@
-# Print ruby's version number (for adding gems to the path)
-function get_ruby_version {
-    if [[ -x $(which ruby) ]]; then
-        print $(ruby -e 'puts RUBY_VERSION')
-    fi
-}
+#
+# Set up path variables
+#
+# Note: it doesn't matter if directories in the lists don't exist, as they
+# won't be added to the path unless they do.
+#
 
-# Add some dirs to the path.
-pathdirs=(/Library/Frameworks/Python.framework/Versions/Current/bin
-        /usr/local/ActivePerl-5.10/bin
-        /usr/local/ActivePerl-5.10/site/bin
-        /usr/local/bin
-        /usr/local/git/bin 
-        /usr/local/libexec/git-core  
-        /var/lib/gems/$(get_ruby_version)/bin
-        /opt/local/bin 
-        ~/bin )
+# Create a list of directories to add to the path
+pathdirs=(
+    /Library/Frameworks/Python.framework/Versions/Current/bin
+    /usr/local/bin
+    /usr/local/git/bin
+    /usr/local/libexec/git-core
+    /opt/local/bin
+    $HOME/bin
+)
 
+# Query the gem configuration to get the correct path
+# XXX: This might cause problems if you alias 'gem' to something else after the path has been setup.
+if [[ -x $(which gem) ]]; then
+        # 's.:.' creates an array by splitting on ':'.
+        pathdirs+=(${(s.:.)"$(gem environment gempath)"})
+fi
+
+# Add directories which exist to the path
 for dir ($pathdirs)
-  if [[ -d $dir ]]; then 
-    path=($dir $path) 
-  fi
-
-cdpath=(~ ~/Projects ~/Work)
+    if [[ -d $dir ]]; then
+        path=($dir $path)
+    fi
 
 # Allow MacPorts man pages and others
-dirs=( /usr/local/git/man 
-       /sw/share/man 
-       /opt/local/man /usr/local/man 
-       $HOME/Library/Documentation/Local/man 
-       /usr/local/ActivePerl-5.10/man 
-       /usr/local/ActivePerl-5.10/site/man)
-       
-for dir ($dirs) 
-  if [[ -x $dir ]]; then 
-    manpath=($manpath $dir) 
+dirs=(
+    /usr/local/git/man
+    /sw/share/man
+    /opt/local/man
+    /usr/local/man
+    $HOME/Library/Documentation/Local/man
+)
+
+# Add directories which exist to the manpath
+for dir ($dirs)
+  if [[ -x $dir ]]; then
+    manpath=($manpath $dir)
   fi
 
 # Add function paths
-# funcdirs=( $HOME/.zsh/func /sw/share/zsh/ /sw/share/zsh/VCS_Info /sw/share/zsh/VCS_Info/Backends)
-# I'm using a manually installed zsh 4.3.9
+local binary=$(which zsh)
+local install_path=$binary:h:h # Strip bin/zsh to find installation path.
 
-binary=$(which zsh)
-install_path=$binary:h:h # Strip bin/zsh to find installation path.
-
-funcdirs=( $HOME/.zsh/func $install_path/share/zsh/4.3.9/functions 
-                $install_path/share/zsh/4.3.6/functions 
-                $install_path/share/zsh/4.2.6/functions
-                /usr/share/zsh/4.2.6/functions
-                /usr/share/zsh/4.3.6/functions
+funcdirs=(
+    $HOME/.zsh/func 
+    $install_path/share/zsh/$ZSH_VERSION/functions
+    /usr/share/zsh/$ZSH_VERSION/functions
 )
-for dir ($funcdirs) 
-  if [[ -x $dir ]]; then 
-    fpath=($fpath $dir) 
+
+# Add exxisting function directories to the fpath
+for dir ($funcdirs)
+  if [[ -x $dir ]]; then
+    fpath=($fpath $dir)
   fi
 
 typeset -gU path cdpath manpath fpath
-
-# A few named directories cd by doing cd ~D etc.
-D=~/Documents
-DL=~/Downloads
-P=~/Projects
-W=~/work
-Z=~/Projects/zshkit
