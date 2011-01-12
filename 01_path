@@ -18,17 +18,18 @@ pathdirs=(
 # Query the gem configuration to get the correct path
 # XXX: This might cause problems if you alias 'gem' to something else after the path has been setup.
 if [[ -x $(which gem) ]]; then
-        # 's.:.' creates an array by splitting on ':'.
-        gemdirs=(${(s.:.)"$(gem environment gempath)"})
-        # The paths above don't end with /bin.
-        for dir ($gemdirs) { pathdirs=($pathdirs "$dir/bin") }
+    # 's.:.' creates an array by splitting on ':'.
+    gemdirs=(${(s.:.)"$(gem environment gempath)"})
+    # The paths above don't end with /bin.
+    for dir ($gemdirs) { pathdirs=($pathdirs "$dir/bin") }
 fi
 
 # Add directories which exist to the path
-for dir ($pathdirs)
+for dir ($pathdirs) {
     if [[ -d $dir ]]; then
         path=($dir $path)
     fi
+}
 
 # Allow MacPorts man pages and others
 dirs=(
@@ -40,10 +41,11 @@ dirs=(
 )
 
 # Add directories which exist to the manpath
-for dir ($dirs)
+for dir ($dirs) {
   if [[ -x $dir ]]; then
     manpath=($manpath $dir)
   fi
+}
 
 # Add function paths
 local binary=$(which zsh)
@@ -56,9 +58,10 @@ funcdirs=(
 )
 
 # Add exxisting function directories to the fpath
-for dir ($funcdirs)
+for dir ($funcdirs) {
   if [[ -x $dir ]]; then
     fpath=($fpath $dir)
   fi
+}
 
 typeset -gU path cdpath manpath fpath
