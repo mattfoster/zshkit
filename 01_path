@@ -5,6 +5,8 @@
 # won't be added to the path unless they do.
 #
 
+local pathdirs mandirs funcdirs helpdirs
+
 # Create a list of directories to add to the path
 pathdirs=(
     /Library/Frameworks/Python.framework/Versions/Current/bin
@@ -32,7 +34,7 @@ for dir ($pathdirs) {
 }
 
 # Allow MacPorts man pages and others
-dirs=(
+mandirs=(
     /usr/local/git/man
     /sw/share/man
     /opt/local/man
@@ -41,7 +43,7 @@ dirs=(
 )
 
 # Add directories which exist to the manpath
-for dir ($dirs) {
+for dir ($mandirs) {
   if [[ -x $dir ]]; then
     manpath=($manpath $dir)
   fi
@@ -54,14 +56,33 @@ local install_path=$binary:h:h # Strip bin/zsh to find installation path.
 funcdirs=(
     $HOME/.zsh/func 
     $install_path/share/zsh/$ZSH_VERSION/functions
+    $install_path/share/zsh/functions
     /usr/share/zsh/$ZSH_VERSION/functions
+    /usr/share/zsh/functions
 )
 
-# Add exxisting function directories to the fpath
+# Add existing function directories to the fpath
 for dir ($funcdirs) {
   if [[ -x $dir ]]; then
     fpath=($fpath $dir)
   fi
 }
 
-typeset -gU path cdpath manpath fpath
+# Directories for run-help: see 03_help.
+helpdirs=(
+    $HOME/.zsh/help
+    $install_path/share/zsh/$ZSH_VERSION/zsh_help
+    $install_path/share/zsh/zsh_help
+    /usr/share/zsh/$ZSH_VERSION/zsh_help
+    /usr/share/zsh/zsh_help
+)
+
+for dir ($helpdirs) {
+  if [[ -x $dir ]]; then
+    helpdir=($fpath $dir)
+  fi
+}
+
+typeset -gU path cdpath manpath fpath helpdir
+
+# vim: set syn=zsh:
