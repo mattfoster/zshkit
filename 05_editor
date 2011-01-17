@@ -1,5 +1,6 @@
 export EDITOR
 export CVSEDITOR
+export GIT_EDITOR
 
 # Define an order or preference for text editors
 local editors
@@ -16,6 +17,7 @@ for editor ($editors) {
 # Some editors need specific arguments for VCS
 if [[ $EDITOR == 'mvim' || $EDITOR == 'gvim' ]]; then
     export CVSEDITOR="$EDITOR -f" # Don't fork.
+    export GIT_EDITOR="$EDITOR -f" # Don't fork.
 fi
 
 # Print a warning if there's still no editor set.
