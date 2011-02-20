@@ -1,8 +1,9 @@
 # Include GNU coreutils aliases if installed via homebrew
-
-ALIASES=$(brew --prefix coreutils)/aliases
-if [ -e $ALIASES ]; then
-    source $ALIASES
-    # Whilst experimenting I had problems with my prompt and g[
-    unalias [
+if [[ -x brew ]]; then
+  ALIASES=$(brew --prefix coreutils)/aliases
+  if [ -e $ALIASES ]; then
+      source $ALIASES
+      # Whilst experimenting I had problems with my prompt and g[
+      unalias [
+  fi
 fi
