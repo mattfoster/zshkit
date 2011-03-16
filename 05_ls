@@ -1,7 +1,8 @@
 if [[ -x `which gls` ]]; then
 	alias rls=`which ls`
 	alias ls='gls -h --color=auto '
-elif [[ -n `ls -G` && $? == 0 ]]; then
+# Unfortunatly GNU ls support -G.
+elif [[ $(uname) != 'Linux' && -n `ls -G` && $? == 0 ]]; then
   alias ls='ls -G'
 elif [[ -n `ls --color` && $? == 0 ]]; then 
   # Check if ls can handle the --color option. If it can it's probably gnu.
