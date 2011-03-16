@@ -23,7 +23,7 @@ function title() {
 # precmd is called just before the prompt is printed
 function precmd() {
   # This may not be the best way of doing this.
-  if is-at-least 4.3.7 
+  if is-at-least 4.2.6
   then
     vcs_info_msg_0_=$(git-prompt)
   elif [[ $git_enable == 1 ]]
