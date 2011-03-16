@@ -57,8 +57,10 @@ funcdirs=(
     $HOME/.zsh/func 
     $install_path/share/zsh/$ZSH_VERSION/functions
     $install_path/share/zsh/functions
+    $install_path/share/zsh/site-functions
     /usr/share/zsh/$ZSH_VERSION/functions
     /usr/share/zsh/functions
+    /usr/share/zsh/site-functions
 )
 
 # Add existing function directories to the fpath
