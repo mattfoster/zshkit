@@ -3,12 +3,14 @@ if [[ -x '/Applications/Viscosity.app' || -x "$HOME/Viscosity.app" ]]; then
     function vpnc {
         CONN=$1
         osascript -e 'on run argv
+          tell Application "Viscosity" to activate
           tell Application "Viscosity" to connect item 1 of argv
         end run' $CONN
     }
 
     function vpnca {
-        osascript -e 'tell Application "Viscosity" to connectall'
+        osascript -e 'tell application "Viscosity" to activate
+        tell Application "Viscosity" to connectall'
     }
 
     function vpnd {
