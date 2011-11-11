@@ -15,6 +15,7 @@ pathdirs=(
     /usr/local/libexec/git-core
     /opt/local/bin
     $HOME/bin
+    $HOME/.rbenv/bin
 )
 
 # Query the gem configuration to get the correct path
