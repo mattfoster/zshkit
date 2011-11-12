@@ -1,1 +1,3 @@
-eval "$(rbenv init -)"
+if [[ -x $(which rbenv) ]]; then
+  eval "$(rbenv init -)"
+fi
