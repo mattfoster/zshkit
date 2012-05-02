@@ -4,7 +4,7 @@ export GIT_EDITOR
 
 # Define an order or preference for text editors
 local editors
-editors=(mate mvim gvim vim vi nano pico)
+editors=(vim mate mvim gvim nano pico)
 
 # Look for the first of these editors which exists
 for editor ($editors) {

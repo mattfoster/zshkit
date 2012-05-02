@@ -80,6 +80,26 @@ sudo-command-line() {
 }
 zle -N sudo-command-line
 
+
+less-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != less\ * ]] && BUFFER="less $BUFFER"
+}
+zle -N less-command-line
+
+less-command-line-output() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != less\ * ]] && BUFFER="less \$($BUFFER)"
+}
+zle -N less-command-line-output
+
+sub-command-line() {
+    BUF=$BUFFER
+    zle up-history
+    BUFFER="$BUF \$($BUFFER)"
+}
+zle -N sub-command-line
+
 # run command line with noglob set:
 noglob-command-line() {
     [[ -z $BUFFER ]] && zle up-history

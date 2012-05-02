@@ -60,7 +60,6 @@ zstyle ':completion:*:tar:*' files '*.tar|*.tgz|*.tz|*.tar.Z|*.tar.bz2|*.tZ|*.ta
 # for printing
 zstyle ':completion:*:xdvi:*' files '*.dvi'
 zstyle ':completion:*:dvips:*' files '*.dvi'
-
 # Group relatex matches:
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:-command-:*:(commands|builtins|reserved-words-aliases)' group-name commands
@@ -107,11 +106,13 @@ autoload -Uz is-at-least
 
 if is-at-least 4.3.6; then
   autoload -Uz vcs_info
+  zstyle ':vcs_info:*' disable cdv darcs mtn p4 svk tla
+  zstyle ':vcs_info:*' enable git cvs svn hg bzr
+  zstyle ':vcs_info:*' get-revision true
   zstyle ':vcs_info:*' formats '%b '
   zstyle ':vcs_info:(svn|bzr|cvs):*' branchformat '%b:%r'
   zstyle ':vcs_info:cvs:*' branchformat '%r '
   zstyle ':vcs_info:bzr:*' use-simple true 
-  zstyle ':vcs_info:*' enable git cvs svn hg bzr
   # vcs_info also needs to be in precmd, see: 10_hooks
   vcs_info
 fi

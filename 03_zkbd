@@ -3,3 +3,5 @@ if [[ -f ~/.zkbd/$TERM-$VENDOR-$OSTYPE ]]; then
 else
 	source $mydir/default_zkbd
 fi
+
+bindkey -e
