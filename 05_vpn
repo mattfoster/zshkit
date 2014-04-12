@@ -2,6 +2,11 @@
 if [[ -x '/Applications/Viscosity.app' || -x "$HOME/Viscosity.app" ]]; then
     function vpnc {
         CONN=$1
+        if [[ -z $CONN ]]; then
+          print 'Missing profile argument'
+          print "Usage: $0 <profile>"
+          return 1;
+        fi
         osascript -e 'on run argv
           tell Application "Viscosity" to activate
           tell Application "Viscosity" to connect item 1 of argv
@@ -15,6 +20,11 @@ if [[ -x '/Applications/Viscosity.app' || -x "$HOME/Viscosity.app" ]]; then
 
     function vpnd {
         CONN=$1
+        if [[ -z $CONN ]]; then
+          print 'Missing profile argument'
+          print "Usage: $0 <profile>"
+          return 1;
+        fi
         osascript -e 'on run argv
           tell Application "Viscosity" to disconnect item 1 of argv
         end run' $CONN
