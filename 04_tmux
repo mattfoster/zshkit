@@ -1,0 +1,2 @@
+# Enable 256 colours and unicode
+alias tmux='tmux -2 -u'
