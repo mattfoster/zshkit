@@ -9,6 +9,8 @@ local pathdirs mandirs funcdirs helpdirs
 
 # Create a list of directories to add to the path
 pathdirs=(
+    /Applications/VMWare\ Fusion.app/Contents/Library
+    $HOME/Applications/VMWare\ Fusion.app/Content/Library
     /Library/Frameworks/Python.framework/Versions/Current/bin
     /usr/local/bin
     /usr/local/git/bin
