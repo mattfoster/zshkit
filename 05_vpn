@@ -1,5 +1,5 @@
 # Some simple functions to control Viscosity
-if [[ -x '/Applications/Viscosity.app' || -x "$HOME/Viscosity.app" ]]; then
+if [[ -x '/Applications/Viscosity.app' || -x "$HOME/Applications/Viscosity.app" ]]; then
     function vpnc {
         CONN=$1
         if [[ -z $CONN ]]; then
