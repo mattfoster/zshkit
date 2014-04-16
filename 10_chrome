@@ -1,0 +1,13 @@
+if [[ -x '/Applications/Google Chrome.app' || -x "$HOME/Applications/Google Chrome.app" ]]; then
+    # Taken from http://apple.stackexchange.com/questions/9500/how-to-make-chrome-open-a-new-window-for-external-links and modified
+    function chromew {
+        URL=$1
+        osascript -e 'on run argv
+            tell application "Google Chrome"
+                make new window
+                activate
+                set URL of active tab of first window to item 1 of argv
+            end tell
+        end run' $URL
+    }
+fi
