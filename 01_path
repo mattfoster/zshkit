@@ -8,6 +8,7 @@
 local pathdirs mandirs funcdirs helpdirs
 
 # Create a list of directories to add to the path
+# gnubin contains coreutils without the g prefix
 pathdirs=(
     /Applications/VMWare\ Fusion.app/Contents/Library
     $HOME/Applications/VMWare\ Fusion.app/Content/Library
@@ -16,6 +17,7 @@ pathdirs=(
     /usr/local/git/bin
     /usr/local/libexec/git-core
     /opt/local/bin
+    /usr/local/opt/coreutils/libexec/gnubin
     $HOME/bin
     $HOME/.rbenv/bin
 )
@@ -36,12 +38,14 @@ for dir ($pathdirs) {
     fi
 }
 
-# Allow MacPorts man pages and others
+# Allow Homebrew/MacPorts man pages and others
+# gnuman contains manpages for coreutils without the g prefix
 mandirs=(
     /usr/local/git/man
     /sw/share/man
     /opt/local/man
     /usr/local/man
+    /usr/local/opt/coreutils/libexec/gnuman
     $HOME/Library/Documentation/Local/man
 )
 
