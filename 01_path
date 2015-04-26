@@ -13,11 +13,11 @@ pathdirs=(
     /Applications/VMWare\ Fusion.app/Contents/Library
     $HOME/Applications/VMWare\ Fusion.app/Content/Library
     /Library/Frameworks/Python.framework/Versions/Current/bin
+    /usr/local/opt/coreutils/libexec/gnubin
     /usr/local/bin
     /usr/local/git/bin
     /usr/local/libexec/git-core
     /opt/local/bin
-    /usr/local/opt/coreutils/libexec/gnubin
     $HOME/bin
     $HOME/.rbenv/bin
 )
