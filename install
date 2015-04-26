@@ -6,7 +6,7 @@ fi
 dest=$HOME
 
 mkdir -p $HOME/.zsh/
-ln -s $mydir/func $HOME/.zsh/func
+ln -s $mydir/func $HOME/.zsh/
 
 echo My Directory: $mydir
 cp $HOME/.zshenv $HOME/.zshenv.pre_zshkit
