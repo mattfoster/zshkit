@@ -1,0 +1,16 @@
+function ipsort {
+    sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n
+}
+
+function strip_proto {
+    echo $1 | sed -E -e "s~(https?|ftp|ssh|rsync){0,1}://~~" -e "s~/.*~~"
+}
+
+# Taken from: https://github.com/twe4ked/dotfiles/blob/master/shell/functions/ping.sh
+# Modified to pull out strip_proto func and improve proto list
+function ping {
+    HOST=$(strip_proto $1)
+    shift
+
+    command ping "$HOST" "$@"
+}
