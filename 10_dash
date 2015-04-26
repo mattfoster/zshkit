@@ -1,0 +1,20 @@
+# Dash shell integration
+# Based on http://brettterpstra.com/2014/05/10/bash-and-dash/
+# Example: dash ruby:FileUtils cp_r
+
+if [[ -x '/Applications/Dash.app' || -x "$HOME/Applications/Dash.app" ]]; then
+    # url encode the passed string
+    dash_urlenc () {
+        echo -n "$@" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'
+    }
+
+    # Open argument in Dash
+    function dash() {
+        open "dash://$(dash_urlenc $@)"
+    }
+
+    function dman() {
+        open "dash://manpages:$(dash_urlenc $@)"
+    }
+
+fi
