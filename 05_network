@@ -30,11 +30,12 @@ function nslookup {
 function ipwhois {
     host=$(strip_proto $1)
 
-    # Assuming this is a dns name
-    local ip=$(dig +short $host)
 
     if [[ $host =~ [0-9]{1,3}\.[0-9]{1,3}\. ]]; then
-        ip=$host
+        local ip=$host
+    else
+        # Assuming this is a dns name
+        local ip=$(dig +short $host)
     fi
 
     if [[ -z "${ip}" ]]; then
