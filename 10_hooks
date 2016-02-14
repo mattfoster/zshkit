@@ -1,6 +1,8 @@
 # From: http://dotfiles.org/~_why/.zshrc
 # Really works with minimal prompt setup.
 
+short_hostname=$(hostname -s)
+
 # format titles for screen and rxvt
 function title() {
   # escape '%' chars in $1, make nonprintables visible
@@ -11,7 +13,7 @@ function title() {
 
   case $TERM in
   screen)
-    print -Pn "\ek(%m) $a:$3\e\\"      # screen title (in ^A")
+    print -Pn "\ek($short_hostname) $a:$3\e\\"      # screen title (in ^A")
     ;;
   xterm*|rxvt|ansi)    
     print -Pn "\e]1;$2 | $a:$3\a" # plain xterm title
@@ -33,10 +35,14 @@ function precmd() {
     vcs_info_msg_0_=''
   fi
   # This loads the info messgage into %1v.
-  title "zsh" "$USER@%m" "%55<...<%~"
+  title "zsh" "$USER@$short_hostname" "%55<...<%~"
 }
 
 # preexec is called just before any command line is executed
 function preexec() {
-  title "$1" "$USER@%m" "%35<...<%~"
+  title "$1" "$USER@$short_hostname" "%35<...<%~"
+}
+
+function postcmd() {
+  title "$1" "$USER@$short_hostname" "%35<...<%~"
 }
