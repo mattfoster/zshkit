@@ -1,3 +1,5 @@
+# Useful function for network information finding
+
 function ipsort {
     sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n
 }
@@ -7,29 +9,28 @@ function strip_proto {
 }
 
 function host {
-    HOST=$(strip_proto $1)
+    local host=$(strip_proto $1)
     shift
 
-    command host "${HOST}" "$@"
+    command host "${host}" "$@"
 }
 
 function dig {
-    host=$(strip_proto $1)
+    local host=$(strip_proto $1)
     shift
 
     command dig "${host}" "$@"
 }
 
 function nslookup {
-    host=$(strip_proto $1)
+    local host=$(strip_proto $1)
     shift
 
     command nslookup "${host}" "$@"
 }
 
 function ipwhois {
-    host=$(strip_proto $1)
-
+    local host=$(strip_proto $1)
 
     if [[ $host =~ [0-9]{1,3}\.[0-9]{1,3}\. ]]; then
         local ip=$host
@@ -49,8 +50,15 @@ function ipwhois {
 # Taken from: https://github.com/twe4ked/dotfiles/blob/master/shell/functions/ping.sh
 # Modified to pull out strip_proto func and improve proto list
 function ping {
-    HOST=$(strip_proto $1)
+    local host=$(strip_proto $1)
     shift
 
-    command ping "$HOST" "$@"
+    command ping "$host" "$@"
+}
+
+function whois {
+    local host=$(strip_proto $1)
+    shift
+
+    command whois "$host" "$@"
 }

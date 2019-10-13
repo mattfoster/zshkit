@@ -14,6 +14,7 @@ pathdirs=(
     $HOME/Applications/VMWare\ Fusion.app/Content/Library
     /Library/Frameworks/Python.framework/Versions/Current/bin
     /usr/local/opt/coreutils/libexec/gnubin
+    /usr/local/share/zsh/site-functions
     /usr/local/bin
     /usr/local/git/bin
     /usr/local/libexec/git-core
@@ -61,7 +62,7 @@ local binary=$(which zsh)
 local install_path=$binary:h:h # Strip bin/zsh to find installation path.
 
 funcdirs=(
-    $HOME/.zsh/func 
+    $HOME/.zsh/func
     $install_path/share/zsh/$ZSH_VERSION/functions
     $install_path/share/zsh/functions
     $install_path/share/zsh/site-functions
